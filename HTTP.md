@@ -1,4 +1,25 @@
-https://www.youtube.com/watch?v=aRdr0nylmGk&list=LL&index=2&t=2s
+# HTTP, WEB, RESTful, etc
+
+- RestAPI란 무엇인가?
+
+```markdown
+# 정의
+
+- 클라이언트와 서버 간 통신에서 리소스를 상태로 표현하여 전송하는 아키텍처 스타일
+- HTTP URI 를 통해 자원(Resource)을 명시하고, HTTP Method(POST, GET, PUT, DELETE) 를 통해 해당 자원에 대한 CRUD Operation을 적용한다.
+- HTTP 프로토콜의 표준을 최대한 활용할 수 있다.
+
+# 구성요소
+
+1. 자원(Resource): 서버에서 관리하는 데이터 (URI)
+2. 행위(Verb): 자원에 대한 행위 (HTTP Method)
+3. 표현(Representations): 자원에 대한 행위의 내용 (HTTP Message Payload)
+```
+
+<br>
+<br>
+
+# [HTTP : 웹 응용 프로토콜](https://www.youtube.com/watch?v=aRdr0nylmGk&list=LL&index=2&t=2s) 강의록
 
 ### HTTP
 
@@ -115,3 +136,5 @@ https://www.youtube.com/watch?v=aRdr0nylmGk&list=LL&index=2&t=2s
 - 장점
   - Client request에 대한 응답 시간을 단축
   - 액세스 망의 트래픽 양을 감소시킴
+
+<br>
