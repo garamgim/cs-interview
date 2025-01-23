@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/python-interview-questions/
+
 ### Python
 
 - 파이썬의 특징은 무엇입니까?
@@ -62,3 +64,116 @@
 ```
 
 <br>
+
+- 파이썬에서 `__init__()`이란?
+
+```markdown
+- 객체가 생성될 때 자동으로 호출되는 초기화 메서드다.
+- 객체의 속성을 설정하거나 초기값을 할당하는데 사용된다.
+```
+
+<br>
+
+- 파이썬의 상속과 자바의 상속이 다른점?
+
+```markdown
+- 파이썬은 다중 상속을 지원한다. 즉 하나 이상의 부모 클래스로부터 상속을 받을 수 있다.
+```
+
+<br>
+
+- 제너레이터가 무엇인가?
+
+```markdown
+# 정의
+
+제너레이터는 iterable한 객체를 생성하는 특별한 종류의 함수다.
+한번에 모든 값을 메모리에 로딩하는 대신, 필요할 때마다 값을 하나씩 생성해서 반환한다.
+이는 메모리 효율성을 크게 개선할 수 있다.
+
+# 특징
+
+- `yield` 키워드 사용:
+  - yield는 함수의 실행을 멈추고 호출자에게 값을 반환한다. 함수는 이후 호출 시 해당 지점을 기억하고 다시 실행한다.
+  - yield는 return과 유사하지만, 함수 실행을 끝내지 않고 그 상태를 보존하며 중단한다.
+- Iterator와의 차이:
+  - Generator는 Iterator의 한 종류이나, `__iter__()`와 `__next()__` 메서드를 직접 구현할 필요 없이 yield를 사용하면 자동으로 이터레이터를 생성한다.
+  - Iterator는 데이터를 하나씩 반환하는 객체지만, Generator는 데이터 생성의 로직을 담당하는 함수다.
+- 지연 평가 (Lazy Evaluation):
+  - 값을 한번에 모두 생성하지 않고 next() 호출 시마다 하나씩 생성한다.
+```
+
+```python
+def count_up_to(limit):
+    count = 1
+    while count <= limit:
+        yield count  # 현재 값 반환하고 함수 실행을 멈춤
+        count += 1
+
+# 제너레이터 객체 생성
+counter = count_up_to(5)
+
+# 제너레이터에서 값 하나씩 꺼내기
+print(next(counter))  # 1
+print(next(counter))  # 2
+print(next(counter))  # 3
+print(next(counter))  # 4
+print(next(counter))  # 5
+# 더 이상 값이 없으면 StopIteration 예외 발생
+```
+
+<br>
+
+- `yield`의 다양한 사용 예시
+
+```python
+def read_file_line_by_line(filename):
+    with open(filename, 'r') as file:
+        for line in file:
+            yield line.strip()  # 각 줄을 반환
+
+# 파일에서 한 줄씩 읽기
+file_generator = read_file_line_by_line('sample.txt')
+
+for line in file_generator:
+    print(line)
+```
+
+```markdown
+- read_file_line_by_line 함수는 파일을 한 줄씩 읽어서 반환하는 제너레이터다.
+- 파일이 크더라도 한번에 모든 내용을 메모리에 로드하지 않고 필요할때마다 한줄씩 반환함으로써 메모리를 효율적으로 사용한다.
+- yield는 각 줄을 반환하고, 함수 실행이 중단된 채로 상태를 유지한다. 루프에서 next() 호출 시 그 상태에서 다시 실행된다.
+```
+
+<br>
+
+- Python의 예외처리?
+
+```python
+try:
+    print("파일 열기")
+    # 파일을 여는 코드나, 예외가 발생할 가능성이 있는 코드
+    # 예: 파일 열기, 네트워크 연결 등
+    result = 10 / 0  # 예외 발생
+except ZeroDivisionError:
+    print("0으로 나눌 수 없습니다.")
+finally:
+    print("이 코드는 예외가 발생하든 안 하든 항상 실행됩니다.")
+```
+
+<br>
+
+- `with`란 무엇인가?
+
+```markdown
+- `with`는 context manager를 사용하여 코드 블록 내에서 리소스를 자동으로 관리할 수 있게 해주는 구문이다.
+- 주로 파일을 열거나, 락을 거는 등의 리소스를 다룰 때 사용되며, 코드 블록을 벗어나면 자동으로 해당 리소스를 정리한다.
+- 예를 들어, 파일을 열 때 with를 사용하면 파일을 연 후 자동으로 파일을 닫아주기 때문에, 파일을 닫는 코드를 따로 작성할 필요가 없다.
+```
+
+```python
+with open('example.txt', 'w') as file:
+    file.write('Hello, world!')
+
+# 이 코드 블록을 벗어나면 파일이 자동으로 닫힌다.
+```
